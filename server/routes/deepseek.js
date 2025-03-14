@@ -33,7 +33,7 @@ router.post(
         chat = new Chat({
             id: chatId,
             messages: [
-                { role: "system", content: "You are a helpful assistant." }
+                { role: "assistant", content: "Hello, I'm your AI health assistant. I can provide general health information and guidance. How may I assist you today?" }
             ],
             createdAt: new Date()
         });
@@ -41,7 +41,7 @@ router.post(
     }
 
     try {
-        const messages = [...chat.messages, { role: "user", content: query }];
+        const messages = [ { role: "system", content: "You are **First Look**, an AI doctor assistant providing accurate and professional medical guidance. Given a medical question and chat history, you must answer based on your knowledge while ensuring continuity by considering past interactions. Your responses should be clear, concise, and medically sound, offering general advice while reminding users to consult a healthcare professional for diagnosis or treatment. Maintain an empathetic and professional tone, prioritizing user reassurance and scientific accuracy. If a question lacks details, politely ask for clarification before responding." }, ...chat.messages, { role: "user", content: query }];
         const response = await openai.chat.completions.create({
             messages: messages,
             model: "deepseek-chat",
