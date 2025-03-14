@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 
@@ -9,31 +8,21 @@ export default function Home() {
       
       <div className="flex flex-col items-center justify-center flex-grow px-4 py-12 md:py-24">
         {/* Hero Section */}
-        <div className="max-w-6xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-          <div className="space-y-6">
+        <div className="max-w-6xl w-full mx-auto mb-20">
+          <div className="space-y-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
               Your <span className="text-[#776BA2]">First Look</span> at AI-Powered Health Companion
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Meet your 24/7 personal health assistant that listens, learns, and guides you toward your wellness goals.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/signup" className="cursor-pointer">
                 <button className="px-6 py-3 bg-[#776BA2] text-white font-medium rounded-md hover:bg-[#665a91] transition-colors shadow-sm w-full sm:w-auto">
                   Meet Your Health Assistant
                 </button>
               </Link>
             </div>
-          </div>
-          <div className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden shadow-xl">
-            <Image 
-              src="/health-assistant.jpg" 
-              alt="AI Health Assistant Interface" 
-              fill
-              style={{ objectFit: 'cover' }}
-              priority
-              className="rounded-lg"
-            />
           </div>
         </div>
         
@@ -104,13 +93,8 @@ export default function Home() {
             {testimonials.map((testimonial, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                    <Image 
-                      src={testimonial.avatar} 
-                      alt={testimonial.name} 
-                      width={48} 
-                      height={48}
-                    />
+                  <div className="w-12 h-12 bg-[#776BA2] rounded-full flex items-center justify-center text-white font-bold mr-4">
+                    {testimonial.name.charAt(0)}
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
@@ -125,28 +109,15 @@ export default function Home() {
         
         {/* AI Assistant Capabilities Section */}
         <div className="max-w-6xl w-full mx-auto mb-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Your AI Health Assistant Can:</h2>
-              <ul className="space-y-4">
-                {aiCapabilities.map((capability, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-[#776BA2] mr-3 text-xl">✓</span>
-                    <span className="text-gray-700">{capability}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative h-[300px] rounded-lg overflow-hidden shadow-xl order-1 md:order-2">
-              <Image 
-                src="/ai-assistant.jpg" 
-                alt="AI Health Assistant" 
-                fill
-                style={{ objectFit: 'cover' }}
-                className="rounded-lg"
-              />
-            </div>
-          </div>
+          <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">Your AI Health Assistant Can:</h2>
+          <ul className="space-y-4 max-w-2xl mx-auto">
+            {aiCapabilities.map((capability, index) => (
+              <li key={index} className="flex items-start">
+                <span className="text-[#776BA2] mr-3 text-xl">✓</span>
+                <span className="text-gray-700">{capability}</span>
+              </li>
+            ))}
+          </ul>
         </div>
         
         {/* CTA Section */}
@@ -217,13 +188,11 @@ const testimonials = [
   {
     name: "Emma Rodriguez",
     achievement: "Managing diabetes with confidence",
-    avatar: "/avatars/avatar1.jpg",
     quote: "Having my AI health assistant available 24/7 to answer questions about my blood sugar levels and diet has given me confidence I never had before. It's like having a knowledgeable friend always ready to help."
   },
   {
     name: "David Chen",
     achievement: "Overcame chronic insomnia",
-    avatar: "/avatars/avatar2.jpg",
     quote: "I was skeptical at first, but the personalized sleep recommendations and being able to discuss my concerns anytime made all the difference. My assistant suggested small changes I'd never considered before."
   }
 ];

@@ -18,7 +18,10 @@ connectDB();
 
 // Middleware
 app.use(helmet()); // Security headers
-app.use(cors()); // Enable CORS
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true
+})); // Enable CORS with frontend URL
 app.use(morgan('dev')); // Request logging
 app.use(express.json()); // Parse JSON request body
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request body
